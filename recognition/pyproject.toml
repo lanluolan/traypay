@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dish-recognition"
+version = "0.1.0"
+description = "Dish detection + feature-retrieval recognition for the smart checkout platform"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.23",
+    "Pillow>=9.0",
+    "torch>=2.0",
+    "torchvision>=0.15",
+]
+
+[project.optional-dependencies]
+yolo = ["ultralytics>=8.0"]
+
+[project.scripts]
+dish-recognition = "dish_recognition.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["dish_recognition*"]

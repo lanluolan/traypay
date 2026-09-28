@@ -1,0 +1,17 @@
+# Install the local recognition package first (from this directory):
+#   pip install -e "../recognition[yolo]"
+# It provides dish_recognition and pulls numpy/Pillow/torch/torchvision.
+#
+# The [yolo] extra (ultralytics, AGPL-3.0) is NOT optional in practice: without
+# it the detector silently degrades to treating the whole photo as one region,
+# so a tray with five dishes is recognized — and charged — as one.
+
+Flask>=2.2
+Flask-SQLAlchemy>=3.0
+PyMySQL>=1.0
+cryptography>=41.0     # MySQL 8 caching_sha2_password auth via PyMySQL
+python-dotenv>=1.0
+
+# WSGI server for production (Dockerfile). Linux/macOS only — on Windows it
+# won't install, so local development uses `python manage.py` instead.
+gunicorn>=21.2; sys_platform != 'win32'
