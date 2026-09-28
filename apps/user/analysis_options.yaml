@@ -1,0 +1,8 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # 历史代码里大量 snake_case 的字段与类名（Home_load、payPage、
+    # u_id/c_name 等，后两者直接对应后端的列名）。改名会波及所有调用点。
+    non_constant_identifier_names: false
+    camel_case_types: false

@@ -1,0 +1,37 @@
+name: admin_paysystem
+description: 智慧食堂结算平台 —— 食堂端。
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Shared with apps/user — see apps/common/lib/checkout_common.dart
+  checkout_common:
+    path: ../common
+
+  cupertino_icons: ^1.0.2
+  http: ^0.13.4
+  # pay_page / add_food 直接 import 它（MediaType），必须显式声明，
+  # 不能靠 http 的传递依赖。
+  http_parser: ^4.0.0
+  fluttertoast: ^8.0.0
+  image_picker: ^0.8.4+4
+  # pay_page —— 扫码收款
+  barcode_scan2: ^4.2.0
+  # 这里只留 lib/ 里真的 import 了的包。历史上删掉的见 ../README.md「已移除的依赖」。
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - img/

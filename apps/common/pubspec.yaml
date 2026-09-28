@@ -1,0 +1,26 @@
+name: checkout_common
+description: Widgets and configuration shared by the user and admin Flutter apps.
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Kept in sync with both apps' constraints on purpose — a path dependency
+  # shares one resolution, so a mismatch here would break `pub get` in the apps.
+  http: ^0.13.4
+  fluttertoast: ^8.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - img/

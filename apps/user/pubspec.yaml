@@ -1,0 +1,33 @@
+name: pay_system
+description: 智慧食堂结算平台 —— 顾客端。
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Shared with apps/admin — see apps/common/lib/checkout_common.dart
+  checkout_common:
+    path: ../common
+
+  cupertino_icons: ^1.0.2
+  http: ^0.13.4
+  fluttertoast: ^8.0.0
+  # pay/pay_page.dart —— 付款二维码
+  qr_flutter: ^4.0.0
+  # 这里只留 lib/ 里真的 import 了的包。历史上删掉的见 ../README.md「已移除的依赖」。
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - img/
