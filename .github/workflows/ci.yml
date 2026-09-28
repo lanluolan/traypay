@@ -1,0 +1,78 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  recognition-tests:
+    name: recognition unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Store/pipeline tests use stub detectors & embedders, so torch is
+      # not needed here; the embedder smoke test self-skips without it.
+      - name: Install test dependencies
+        run: pip install numpy Pillow
+
+      - name: Run tests
+        working-directory: recognition
+        run: python -m unittest discover -s tests -v
+
+  backend-tests:
+    name: backend auth and recognition workflow tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Enough to import `payment` and exercise the auth decorators. The
+      # recognition package is installed without [yolo] and without torch —
+      # nothing under tests/test_auth.py reaches the embedder.
+      - name: Install dependencies
+        run: |
+          pip install Flask Flask-SQLAlchemy
+          pip install --no-deps -e recognition
+          pip install numpy Pillow
+
+      # tests/test_api_integration.py self-skips without TEST_DATABASE_URL.
+      - name: Run tests
+        working-directory: backend
+        run: python -m unittest discover -s tests -t . -v
+
+      - name: Compile backend sources
+        run: python -m compileall -q backend
+
+  flutter-analyze:
+    name: flutter analyze
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [common, user, admin]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Resolve dependencies
+        working-directory: apps/${{ matrix.app }}
+        run: flutter pub get
+
+      - name: Analyze
+        working-directory: apps/${{ matrix.app }}
+        run: flutter analyze
+
+      # Only `common` has tests; the two apps ship the default widget test.
+      - name: Test
+        working-directory: apps/${{ matrix.app }}
+        run: flutter test

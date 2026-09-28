@@ -1,0 +1,40 @@
+# Build context is the repository root (docker build -f backend/Dockerfile .).
+# The image only needs recognition/ and backend/ sources — keep everything
+# else, especially secrets and multi-GB local state, out of the context.
+
+# --- Secrets: must NEVER enter the image ---
+**/.env
+
+# --- Local environments & caches (huge) ---
+.venv/
+venv/
+**/__pycache__/
+*.pyc
+*.egg-info/
+.ruff_cache/
+.pytest_cache/
+
+# --- Version control / CI ---
+.git/
+.github/
+
+# --- Not part of the backend image ---
+apps/
+docs/
+datasets/
+runs/
+backend/tests/          # integration suite; needs a seeded MySQL, not a runtime dep
+
+# --- Runtime state: lives on volumes, not in image layers ---
+**/dish_feature_store/
+backend/static/
+backend/test_results.txt
+
+# --- Model weights caches / experiment artifacts ---
+*.pt
+*.pth
+# ...except the pinned detector weights, which the image needs at a known
+# path. Without them ultralytics downloads yolov8n.pt on first use — into a
+# non-persisted directory, so every container restart re-downloads it and the
+# checkout host needs outbound internet.
+!recognition/weights/*.pt

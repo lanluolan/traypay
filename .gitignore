@@ -1,0 +1,67 @@
+# ---------------------------------------------------------------- secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+*.keystore
+*.jks
+
+# ---------------------------------------------------------------- Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.cache/
+.ruff_cache/
+build/
+dist/
+
+dish_feature_store/
+backend/test_results.txt
+
+# ---------------------------------------------------------------- Flutter
+.dart_tool/
+.packages
+.flutter-plugins
+**/.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+**/build/
+*.iml
+
+# Android
+**/android/.gradle/
+**/android/local.properties
+**/android/captures/
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+**/android/key.properties
+
+# iOS / macOS
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/App.framework/
+**/ios/Flutter/Flutter.framework/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Pods/
+**/Podfile.lock
+.DS_Store
+
+# ---------------------------------------------------------------- 模型权重
+*.pt
+*.pth
+runs/
+datasets/
+
+# ---------------------------------------------------------------- 编辑器
+.idea/
+.vscode/
+*.swp
+
+ISSUES.md
+
+ROADMAP.md
