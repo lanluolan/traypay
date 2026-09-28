@@ -97,12 +97,13 @@ class Mine extends StatelessWidget {
               ],
             ),
           ),
-          const Expanded(
+          Expanded(
             flex: 1,
             child: Padding(
-              padding: EdgeInsets.only(top: 40.0, right: 30.0),
+              padding: const EdgeInsets.only(top: 40.0, right: 30.0),
               child: CircleAvatar(
-                backgroundImage: AssetImage("img/touxiang.jpg"),
+                backgroundImage: const AssetImage("img/touxiang.jpg"),
+                onBackgroundImageError: (_, __) {},
                 minRadius: 30,
               ),
             ),
@@ -133,9 +134,9 @@ class Mine extends StatelessWidget {
         height: 45,
         width: 270,
         child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(
-              const StadiumBorder(side: BorderSide(style: BorderStyle.none)),
+          style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(
+              side: BorderSide(style: BorderStyle.none),
             ),
           ),
           onPressed: () {

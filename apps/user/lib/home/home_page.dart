@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:checkout_common/checkout_common.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:pay_system/home/home_load.dart';
 
 import '../models/user.dart';
@@ -239,9 +238,9 @@ class _HomePageState extends State<HomePage> {
           right: 15,
           bottom: 27,
           child: ElevatedButton(
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all(
-                const StadiumBorder(side: BorderSide(style: BorderStyle.none)),
+            style: ElevatedButton.styleFrom(
+              shape: const StadiumBorder(
+                side: BorderSide(style: BorderStyle.none),
               ),
             ),
             onPressed: _showRechargeDialog,

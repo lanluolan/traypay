@@ -52,7 +52,6 @@ class _ForgetPasswordBody extends StatefulWidget {
 
 class _ForgetPasswordBodyState extends State<_ForgetPasswordBody> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email = "";
   String _password = "";
 
   @override
@@ -84,9 +83,9 @@ class _ForgetPasswordBodyState extends State<_ForgetPasswordBody> {
         height: 45,
         width: 270,
         child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(
-              const StadiumBorder(side: BorderSide(style: BorderStyle.none)),
+          style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(
+              side: BorderSide(style: BorderStyle.none),
             ),
           ),
           onPressed: () {
@@ -113,6 +112,11 @@ class _ForgetPasswordBodyState extends State<_ForgetPasswordBody> {
       width: 120,
       height: 120,
       package: 'checkout_common',
+      errorBuilder: (_, __, ___) => const SizedBox(
+        width: 120,
+        height: 120,
+        child: Icon(Icons.lock_reset, size: 80, color: Colors.blue),
+      ),
     );
   }
 
@@ -120,7 +124,6 @@ class _ForgetPasswordBodyState extends State<_ForgetPasswordBody> {
     return TextFormField(
       decoration: const InputDecoration(hintText: '请输入邮箱'),
       validator: (v) => (v == null || v.isEmpty) ? '请输入正确的邮箱' : null,
-      onSaved: (v) => _email = v ?? "",
     );
   }
 

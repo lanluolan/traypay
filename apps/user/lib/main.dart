@@ -217,9 +217,9 @@ class _MyHomePageState extends State<MyHomePage> {
         height: 45,
         width: 270,
         child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(
-              const StadiumBorder(side: BorderSide(style: BorderStyle.none)),
+          style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(
+              side: BorderSide(style: BorderStyle.none),
             ),
           ),
           onPressed: _submitting ? null : _submit,
@@ -285,6 +285,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildIcon() {
-    return Image.asset("img/shopping.png", width: 120, height: 120);
+    return Image.asset(
+      "img/shopping.png",
+      width: 120,
+      height: 120,
+      errorBuilder: (_, __, ___) => const SizedBox(
+        width: 120,
+        height: 120,
+        child: Icon(Icons.shopping_cart, size: 80, color: Colors.blue),
+      ),
+    );
   }
 }
