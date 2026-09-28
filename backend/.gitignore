@@ -4,8 +4,5 @@ __pycache__/
 test_results.txt
 dish_feature_store/
 
-# runtime uploads; keep the directory structure only
-static/*
-!static/cuisine/
-static/cuisine/*
-!static/cuisine/.gitkeep
+# runtime uploads
+static/
